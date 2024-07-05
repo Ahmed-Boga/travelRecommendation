@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TravelBloom</title>
+<link rel="stylesheet" href="travel_recommendation.css">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="#" class="logo">TravelBloom</a>
+        <div class="nav-links">
+            <a href="#">Home</a>
+            <a href="#">About Us</a>
+            <a href="#">Contact Us</a>
+        </div>
+        <form id="searchForm" class="search-form">
+            <input type="text" id="searchInput" placeholder="beach">
+            <button type="submit" id="searchButton" class="search-button">Search</button>
+            <button type="button" id="resetButton" class="clear-button">Clear</button>
+        </form>
+    </nav>
+
+    <div class="main-content">
+        <div class="left-section">
+            <h1>EXPLORE<br>DREAM<br>DESTINATION</h1>
+            <p>It encourages exploration of unfamiliar territories, embracing diverse cultures and landscapes, while pursuing the desired destination that captivates the heart and ignites a sense of wonder.</p>
+            <button style="background-color: teal; color: white; border: none; padding: 10px 20px; cursor: pointer;">BOOK NOW</button>
+        </div>
+        <div class="right-section">
+            <div class="destination-card">
+                <img src="./public/@OsumWalls (79).jpg" alt="Sydney" class="destination-image">
+                <h2>Sydney, Australia</h2>
+                <p>A beautiful coastal city with a relaxed atmosphere, featuring the Sydney Opera House, Harbour Bridge, and stunning beaches.</p>
+                <button style="background-color: teal; color: white; border: none; padding: 5px 10px; cursor: pointer;">Visit</button>
+            </div>
+            <!-- Add more destination cards as needed -->
+            <!-- <div id="recommendations">
+                Recommendations will be dynamically added here
+            </div> -->
+            
+        </div>
+    </div>
+
+    <div class="social-icons">
+        <a href="#" class="fa fa-twitter"></a>
+        <a href="#" class="fa fa-facebook"></a>
+        <a href="#" class="fa fa-instagram"></a>
+        <a href="#" class="fa fa-youtube"></a>
+    </div>
+
+    <script src="travel_recommendation.js"></script>
+</body>
+</html>
