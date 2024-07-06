@@ -5,6 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TravelBloom</title>
     <link rel="stylesheet" href="travel_recommendation.css" />
+    <style>
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        height: 100%;
+        background-image: url("./public/@OsumWalls\ 5454385865\ \(40\).jpg");
+        background-repeat: no-repeat; /* Don't repeat the image */
+        background-position: center; /* Center the image horizontally and vertically */
+        background-size: cover; /* Cover the entire element with the image */
+        background-color: #f0f0f0; /* Set a fallback background color */
+      }
+    </style>
   </head>
   <body>
     <nav class="navbar">
@@ -23,9 +37,9 @@
         >TravelBloom</a
       >
       <div class="nav-links">
-        <a href="#">Home</a>
-        <a href="#">About Us</a>
-        <a href="#">Contact Us</a>
+        <a href="./travel_recommendation.html" id="currentPage">Home</a>
+        <a href="./aboutUs.html">About Us</a>
+        <a href="./contactUs.html">Contact Us</a>
       </div>
 
       <form id="searchForm" class="search-form">
@@ -42,6 +56,8 @@
         </button>
       </form>
     </nav>
+
+    <!-- ********************************************************************************** -->
     <section id="mainSection">
       <div class="main-content">
         <div class="left-section">
