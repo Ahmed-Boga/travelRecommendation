@@ -1,7 +1,4 @@
-// // Global variable to store the fetched data
-// let travelData = [];
-
-// Fetch data from the JSON file
+// <================Fetch data from the JSON file================>
 async function fetchFunction() {
   try {
     const response = await fetch("travel_recommendation_api.json");
@@ -9,7 +6,6 @@ async function fetchFunction() {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
     const data = await response.json();
-    console.log("data", data);
     return data;
   } catch (error) {
     console.error("Error fetching data:", error);
@@ -17,35 +13,7 @@ async function fetchFunction() {
   }
 }
 
-// // Function to perform search
-// async function performSearch(event) {
-//   event.preventDefault();
-
-//   const searchTerm = document.getElementById("searchInput").value.toLowerCase();
-
-//   const travelData = await fetchFunction();
-//   let results = [];
-
-//   for (const travelArray in travelData) {
-//     if (travelArray.toLowerCase().includes(searchTerm)) {
-//       results = travelData[travelArray];
-//     } else {
-//       travelData[travelArray].filter((item) => {
-//         if (item.name.toLowerCase().includes(searchTerm)) {
-//           console.log(travelArray);
-//           console.log(item.cities);
-//           console.log(item.name.toLowerCase().includes(searchTerm));
-//           results = item.cities;
-//         }
-//       });
-//     }
-//   }
-
-//   console.log(results);
-//   // Use the filteredData for your search logic
-//   displayResults(results);
-// }
-
+// <================Function to perform search================>
 async function performSearch(event) {
   event.preventDefault();
 
@@ -54,41 +22,28 @@ async function performSearch(event) {
   const travelData = await fetchFunction();
   let results = [];
 
-  // Loop through each property (countries, temples, beaches)
   for (const category in travelData) {
-    // Check if search term matches the category name (optional)
-    if (
-      !category.toLowerCase().includes(searchTerm) &&
-      category[name].toLowerCase().includes(searchTerm)
-    ) {
-      console.log(`${category},${searchTerm}`);
-      for (const key in object) {
-        if (key == "cities") {
-          console.log(key);
-          for (const city of key) {
-            console.log(city);
-            results.push(city); // Add all items from the category
-            return; // Skip filtering within the category if the category itself matches
-          }
+    for (const iterator of travelData[category]) {
+      if (category.toLocaleLowerCase().includes(searchTerm)) {
+        console.log(iterator);
+        results.push(iterator);
+
+        console.log(Object.hasOwnProperty.call(iterator, "cities"));
+      } else {
+        if (
+          Object.hasOwnProperty.call(iterator, "cities") &&
+          iterator["name"].toLocaleLowerCase().includes(searchTerm)
+        ) {
+          results = iterator["cities"];
         }
       }
     }
-
-    // Filter items within the current category
-    const filteredItems = travelData[category].filter(
-      (item) => item.name.toLowerCase().includes(searchTerm) && !item.cities
-    );
-
-    // Add filtered items to the results
-    results.push(...filteredItems);
   }
 
-  console.log(results);
-  // Use the filteredData for your search logic
-  displayResults(results);
+  displayResults(results); // Use the filteredData for your search logic
 }
 
-// Function to display search results
+// <================Function to display search results================>
 function displayResults(results) {
   const resultsContainer = document.querySelector(".right-section");
   console.log(resultsContainer);
@@ -108,17 +63,23 @@ function displayResults(results) {
             <img src="${item.imageUrl}" alt="${item.name}" class="destination-image">
             <h3 >${item.name}</h3>
             <p>${item.description}</p>
-            <p>Current Time: <span id="time-${item.id}"></span></p>
+            <p>Current Time: <span class="time-${item.timezone}"></span></p>
             <button id="leftsidebutton">Visit</button>
         `;
     resultsContainer.appendChild(resultElement);
 
-    // Display current time for the location (Task 10)
-    updateTime(item.timezone, `time-${item.id}`);
+    updateTime(item.timezone, `time-${item.timezone}`); //  Display current time for the location (Task 10)
   });
 }
 
-// Function to update time for a specific timezone (Task 10)
+// <================Function to clear search results (Task 9)================>
+function clearResults() {
+  const resultsContainer = (document.querySelector(".right-section").innerHTML =
+    "");
+  document.getElementById("searchInput").value = "";
+}
+
+// <================Function to update time for a specific timezone (Task 10)================>
 function updateTime(timezone, elementId) {
   const options = {
     timeZone: timezone,
@@ -130,19 +91,16 @@ function updateTime(timezone, elementId) {
 
   function updateClock() {
     const currentTime = new Date().toLocaleTimeString("en-US", options);
-    document.getElementById(elementId).textContent = currentTime;
+    const timespans = document.getElementsByClassName(elementId);
+    for (const key of timespans) {
+      key.textContent = currentTime;
+    }
   }
 
   updateClock();
   setInterval(updateClock, 1000);
 }
 
-// Function to clear search results (Task 9)
-function clearResults() {
-  document.getElementById("searchInput").value = "";
-  document.getElementById("searchResults").innerHTML = "";
-}
-
-// Event listeners
+// <================Event listeners================>
 document.getElementById("searchForm").addEventListener("submit", performSearch);
 document.getElementById("resetButton").addEventListener("click", clearResults);
