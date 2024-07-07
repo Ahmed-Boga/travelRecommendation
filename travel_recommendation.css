@@ -132,12 +132,13 @@
   margin-bottom: 20px;
 }
 .destination-card,
-h2,
+h3,
 p,
 #leftsidebutton {
   margin-left: 10px;
   margin-bottom: 10px;
 }
+
 .destination-image {
   width: 100%;
   height: 70%;
