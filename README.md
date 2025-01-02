@@ -12,7 +12,7 @@ To get started with this project, you'll need the following:
 **1. Clone the Repository:**
 
 ```bash
-git clone [invalid URL removed]
+git clone https://github.com/Ahmed-Boga/travelRecommendation.git
 ```
 **2. Install Dependencies (if any):**
 
